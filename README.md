@@ -2,6 +2,8 @@
 
 Create a donut 🍩 
 
+(I don't think this is possible on WSL2)
+
 ## CMake
 
 To make use `cmake .` to generate Makefile. Then use `make openGLDonut` to make the actual binary executable
