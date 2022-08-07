@@ -6,8 +6,11 @@ project(openGLDonut VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE glad)
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw3)
+find_package(glfw3 3.3 REQUIRED)
+
+# Add .lib files
+link_directories(${CMAKE_SOURCE_DIR}/Libraries/lib ${CMAKE_DL_LIBS})
+include_directories(${CMAKE_SOURCE_DIR}/Libraries/include)
 
 # Add source files
 file(GLOB_RECURSE SOURCE_FILES 
@@ -18,10 +21,6 @@ ${CMAKE_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADER_FILES 
 ${CMAKE_SOURCE_DIR}/*.h
 ${CMAKE_SOURCE_DIR}/*.hpp)
-
-# Add .lib files
-link_directories(${CMAKE_SOURCE_DIR}/Libraries/lib)
-include_directories(${CMAKE_SOURCE_DIR}/Libraries/include)
 
 # add the executable# Define the executable
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
